@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.apache.taglibs.standard.lang.jstl.AndOperator;
 
 import com.meng.book.dao.ProductDao;
 import com.meng.book.domain.Order;
@@ -14,7 +15,7 @@ import com.meng.book.domain.OrderItem;
 import com.meng.book.domain.Product;
 import com.meng.book.exception.ProductException;
 import com.meng.book.utils.C3p0Utils;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 
 public class ProductDaoImpl implements ProductDao{
@@ -125,6 +126,30 @@ public class ProductDaoImpl implements ProductDao{
 		
 		
 		
+	}
+
+	@Override
+	public List<Product> findProductByManyCondition(String id, String category, String name, double minprice,
+			double maxprice) {
+		//SELECT * FROM products WHERE 1=1 AND price>10 AND price<2000 AND  id LIKE '%0%' AND category='计算机';
+		String sql="SELECT * FROM products WHERE 1=1 ";
+		QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+		try {
+			if(!id.trim().equals(""))
+				sql+=" and id like '"+id+"' ";
+			if(!category.trim().equals(""))
+				sql+=" and category ='"+category+"' ";
+			if(minprice>=0)
+				sql+=" and price>"+minprice;
+			if(maxprice>=0)
+				sql+=" and price< "+maxprice;
+			
+			return	qr.query(sql,new BeanListHandler<Product>(Product.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ProductException("获取数据失败",e);
+		}
 	}
 	
 	

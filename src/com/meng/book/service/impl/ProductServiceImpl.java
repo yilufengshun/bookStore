@@ -14,7 +14,7 @@ import com.meng.book.domain.Product;
 import com.meng.book.exception.ProductException;
 import com.meng.book.service.ProductService;
 import com.meng.book.utils.C3p0Utils;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 public class ProductServiceImpl implements ProductService {
 
@@ -59,6 +59,15 @@ public class ProductServiceImpl implements ProductService {
 		ProductDao pd=new ProductDaoImpl();
 		
 		return pd.findProducyById(id);
+	}
+
+
+
+	@Override
+	public List<Product> findProductByManyCondition(String id, String category, String name, double minprice,
+			double maxprice) {
+		ProductDao pd=new ProductDaoImpl();
+		return pd.findProductByManyCondition(id, category, name, minprice, maxprice);
 	}
 
 }

@@ -74,6 +74,10 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 				}
 				resp.addCookie(cookie2);
 				req.getSession().setAttribute("user", user);
+				if(username.equals("admin")){
+					resp.sendRedirect("admin/login/home.jsp");
+					return;
+				}
 				
 				//判断又没有要返回的url
 				if(returl==null&&returl.trim().equals("")){

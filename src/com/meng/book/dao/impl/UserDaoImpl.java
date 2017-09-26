@@ -9,7 +9,7 @@ import com.meng.book.dao.UserDao;
 import com.meng.book.domain.User;
 import com.meng.book.exception.UserException;
 import com.meng.book.utils.C3p0Utils;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 public class UserDaoImpl implements UserDao{
 

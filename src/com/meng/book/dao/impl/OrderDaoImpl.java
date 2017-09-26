@@ -17,7 +17,7 @@ import com.meng.book.domain.Product;
 import com.meng.book.domain.User;
 import com.meng.book.exception.OrderException;
 import com.meng.book.utils.C3p0Utils;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 public class OrderDaoImpl implements OrderDao{
 

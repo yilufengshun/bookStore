@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Language" content="zh-cn">
@@ -40,6 +42,7 @@
 								<td class="ta_01" bgColor="#ffffff"><select name="category"
 									id="category">
 										<option value="" selected="selected">--选择商品类加--</option>
+										<option value="">全部</option>
 										<option value="文学">文学</option>
 										<option value="生活">生活</option>
 										<option value="计算机">计算机</option>
@@ -117,20 +120,20 @@
 
 								<td width="8%" align="center">删除</td>
 							</tr>
-
-							
+						
+							<c:forEach items="${list }" var="p" varStatus="vs">
 								<tr onmouseover="this.style.backgroundColor = 'white'"
 									onmouseout="this.style.backgroundColor = '#F5FAFE';">
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="23">001</td>
+										width="23">${p.id }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="18%">xxx</td>
+										width="18%">${p.name }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">xxx</td>
+										width="8%">${p.price }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">xxx</td>
+										width="8%">${p.pnum }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										xxx</td>
+										${p.category }</td>
 									<td align="center" style="HEIGHT: 22px" width="7%"><a
 										href="../products/edit.jsp">
 											<img
@@ -146,7 +149,7 @@
 									</a>
 									</td>
 								</tr>
-							
+							</c:forEach>
 						</table>
 					</td>
 				</tr>

@@ -12,4 +12,9 @@ public interface ProductDao {
 		public List<Product> findProductBySearchWithPage(int pageIndex,int pageSize, String search);
 		public Product findProducyById(String id);
 		public void updateProductNum(Order order);
+		public List<Product> findProductByManyCondition(String id
+				,String category
+				,String name
+				,double minprice
+				,double maxprice);
 }
